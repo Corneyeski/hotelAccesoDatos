@@ -4,9 +4,9 @@ import com.alan.hotel.entities.Hotel;
 import com.alan.hotel.repositories.HotelRepository;
 import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController("/")
 public class MainController {
@@ -19,11 +19,41 @@ public class MainController {
         return "funsiona";
     }
 
-    @RequestMapping("/new")
-    public Hotel altHotel(@RequestBody Hotel hotel){
+    @PostMapping("/new")
+    public Long altaHotel(@RequestBody Hotel hotel){
 
         hotelRepository.save(hotel);
 
+        return hotel.getId();
+    }
+
+    @PostMapping("/update")
+    public Hotel updateHotel(@RequestBody Hotel hotel){
+
+        if(hotel.getId() != null && hotelRepository.findOne(hotel.getId()) != null)
+            hotelRepository.save(hotel);
+        else return null;
+
         return hotel;
+    }
+
+    @RequestMapping("/delete/{id}")
+    public Long deleteHotel(@PathVariable Long id){
+
+        hotelRepository.delete(id);
+
+        return id;
+    }
+
+    @RequestMapping("/get/{id}")
+    public Hotel getHotel(@PathVariable Long id){
+
+        if(id != null) return hotelRepository.findOne(id);
+        else return null;
+    }
+
+    @RequestMapping("/findall")
+    public List<Hotel> findAllHotel(){
+        return hotelRepository.findAll();
     }
 }

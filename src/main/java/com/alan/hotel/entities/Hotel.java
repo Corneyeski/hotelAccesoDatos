@@ -1,9 +1,6 @@
 package com.alan.hotel.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -14,7 +11,8 @@ public class Hotel {
     private int precio;
 
     @Id
-    @Column(name = "id")
+    @Column(name="id", unique=true, nullable=false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
