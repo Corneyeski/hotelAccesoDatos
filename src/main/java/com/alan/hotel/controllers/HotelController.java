@@ -14,11 +14,6 @@ public class HotelController {
     @Autowired
     HotelRepository hotelRepository;
 
-    @RequestMapping("/test")
-    public String test() {
-        return "funsiona";
-    }
-
     @PostMapping("/hotels")
     public Hotel createHotel(@RequestBody Hotel hotel) {
 
@@ -45,7 +40,7 @@ public class HotelController {
         return id;
     }
 
-    @RequestMapping("/hotels/{id}")
+    @GetMapping("/hotels/{id}")
     public Hotel getHotel(@PathVariable Long id) {
 
         if (id != null) return hotelRepository.findOne(id);
