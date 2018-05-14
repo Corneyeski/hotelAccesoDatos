@@ -22,20 +22,20 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link active" onclick="hideForm()">
                             <span data-feather="home"></span>
                             Dashboard <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" onclick="showForm()">
                             <span data-feather="file"></span>
-                            Nuevo hotel
+                            New hotel
                         </a>
                     </li>
                 </ul>
 
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <!--<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                     <span>Saved reports</span>
                     <a class="d-flex align-items-center text-muted" href="#">
                         <span data-feather="plus-circle"></span>
@@ -66,7 +66,7 @@
                             Year-end sale
                         </a>
                     </li>
-                </ul>
+                </ul>-->
             </div>
         </nav>
 
@@ -84,19 +84,7 @@
                         <th>Options</th>
                     </tr>
                     </thead>
-                    <tbody id="data">
-                    <tr>
-                        <td>1</td>
-                        <td>Hotel 1</td>
-                        <td>29</td>
-                        <td>19394848 €</td>
-                        <td></td>
-                        <td>
-                            <button type="button" class="btn btn-warning btn-sm">EDIT</button>
-                            <button type="button" class="btn btn-danger btn-sm">REMOVE</button>
-                        </td>
-                    </tr>
-                    </tbody>
+                    <tbody id="data"></tbody>
                 </table>
             </div>
         </main>
@@ -120,6 +108,32 @@
                 <button type="button" class="btn btn-success" onclick="onSave()">Save</button>
             </form>
         </main>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Deleting</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are you sure do you want to delete the hotel?
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteHotel()">Delete</button>
+            </div>
+
+        </div>
     </div>
 </div>
 
