@@ -5,9 +5,13 @@ import com.alan.hotel.repositories.HotelRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Subquery;
 import javax.ws.rs.BadRequestException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController("/")
@@ -60,10 +64,23 @@ public class HotelController {
     }
 
     @GetMapping("/hotels")
-    public List<Hotel> findAllHotel() {
+    public List<Hotel> findAllHotel(@RequestParam(value = "price", required = false) Double price, @RequestParam(value = "rooms", required = false) Long rooms) {
 
         log.debug("Find hotels");
 
-        return hotelRepository.findAll();
+        return hotelRepository.findAll((root, query, cb) -> {
+
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (price != null) {
+                predicates.add(cb.equal(root.get("precio"), price));
+            }
+
+            if (rooms != null) {
+                predicates.add(cb.equal(root.get("numHabitaciones"), rooms));
+            }
+
+            return cb.and(predicates.toArray(new Predicate[0]));
+        });
     }
 }
