@@ -70,30 +70,55 @@
             </div>
         </nav>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" id="tableData">
 
             <h2>Hoteles</h2>
             <div class="table-responsive">
-                <table class="table table-striped table-sm">
+                <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nombre</th>
-                        <th>Habitaciones</th>
-                        <th>Precio</th>
+                        <th>Name</th>
+                        <th>Rooms</th>
+                        <th>Price<th>
+                        <th>Options</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="data">
                     <tr>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
+                        <td>1</td>
+                        <td>Hotel 1</td>
+                        <td>29</td>
+                        <td>19394848 €</td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm">EDIT</button>
+                            <button type="button" class="btn btn-danger btn-sm">REMOVE</button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+        </main>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" id="form" hidden>
+            <form>
+                <input type="hidden" id="hotelId">
+                <div class="form-group">
+                    <label for="hotelName">Hotel name</label>
+                    <input type="text" class="form-control" id="hotelName" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <label for="hotelRooms">Hotel rooms</label>
+                    <input type="number" class="form-control" id="hotelRooms" placeholder="Enter rooms">
+                </div>
+                <div class="form-group">
+                    <label for="hotelPrice">Hotel rooms</label>
+                    <input type="number" class="form-control" id="hotelPrice" placeholder="Enter price">
+                </div>
+                <button type="reset" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-success" onclick="onSave()">Save</button>
+            </form>
         </main>
     </div>
 </div>
