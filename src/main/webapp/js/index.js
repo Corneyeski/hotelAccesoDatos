@@ -20,8 +20,11 @@ function searchData() {
 
     hotels = [];
 
+    price = document.getElementById("price").value;
+    rooms = document.getElementById("rooms").value;
+
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", API_URL, false); // false for synchronous request
+    xmlHttp.open("GET", API_URL + "?price=" + price + "&rooms=" + rooms + "", false); // false for synchronous request
     xmlHttp.send();
     hotels = JSON.parse(xmlHttp.responseText);
     table = document.getElementById("data").innerHTML = "";
